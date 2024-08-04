@@ -15,7 +15,7 @@ BEGIN {
     numberRecords = 0;
     titleRecord;
     dashBreak = "\n-------------------------------\n";
-    plusBreak = "\n\n+++++++++++++++++++++++++++++++\n\n";
+    plusBreak = "\n+++++++++++++++++++++++++++++++\n\n";
 
     print "Program started on " strftime("%m/%d/%Y", systime()) " at " strftime("%H:%M:%S", systime());
     print "Opened file: " fileName;
@@ -26,12 +26,13 @@ BEGIN {
     # for (i =0; i<ARGC; ++i) {
     #     printf "Argument: %s\n", ARGV[i];
     # }
+    printf "\n";
 }
 
 NR==1 {
-    split($0,titleHeads,",");
+    split($0,titleHeads,"(:){1}");
 
-    printf "   The Columns\n\n";
+    printf "   \tThe First Row\n\n";
 
     if (length(titleHeads) > 1) {
         for (i in titleHeads) {
@@ -44,10 +45,16 @@ NR==1 {
 
 NR>1{
     ++numberRecords;    
-    FS = "\n";
-    record = "$0";
-    printf "\n%s\n",$record;
-    # printf "%s",dashBreak;
+    record = $0;
+    recordDetails = split(record,details,"(:){1}");
+
+    for (i in details) {
+       if (i < length(details)) {
+        printf "%s  \t",details[i];
+       } else {
+        printf "%s\n",details[i];
+       }
+    }
 }
 
 
