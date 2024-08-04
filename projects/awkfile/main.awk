@@ -1,43 +1,61 @@
 BEGIN {
-    print " \tReading file " ARGV[1] "\n";
-    # exit 0;
-    FIELDWIDTHS = "20 40";
+    # Overriding some built-in variables
+
+    # FIELDWIDTHS = "20 40 15 85";
     FPAT = "([^,]+)|(\"[^\"]+\")";
     OFS="  \t";
     RS="\n";
     ORS="\n\n";
-    limit=USER_DEFINED_LIMIT;
-    sLength=RLENGTH;
-    c1 = "";
-    c2 = "";
-    c3 = "";    
-    dashBreak = "-------------------------------";
-    plusBreak = "+++++++++++++++++++++++++++++++";
-}
 
-NR==1 {
-    c1=$1;
-    c2=$2;
-    c3=$3;
+    # Vars
+    fileName = ARGV[1];
+    numberRecords = 0;
+    dashBreak = "\n-------------------------------------------------\n";
+    plusBreak = "\n+++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+
+    print "Program started on " strftime("%m/%d/%Y", systime()) " at " strftime("%H:%M:%S", systime());
+    print "Opened file: " fileName;
+    print "Argument Count: " ARGC;
 }
 
 {
-    print "\n"plusBreak "\nNumber of Fields:  ", NF;
-    # for (i = 1; i <= NF; i++) {
-    #     # printf("$%d = <%s>\n", i, $i);
-    #     printf("%d: %s\n",i, $i);
-    # }
-}
-
-NR!=1 {
-    print dashBreak "\nDetailed | "c2 ":  " $2" \t"c1":  "$1" \t" c3 ":  "$3"\n" dashBreak "\n";
+    printf "\n";
 }
 
 NR==1 {
-    print $2 " \t"$1 " \t"$3;
+    split($0,headers,",");
+
+    if (length(headers) > 1) {
+        for (i in headers) {
+            printf "%s  \t ",toupper(headers[i]);
+        }
+    } else {
+        printf "\n  \tUh-oh!!\n\n";
+    }
+
+    printf "%s",plusBreak;
+}
+
+NR>1 {
+    ++numberRecords;  
+
+    split($0,records,",");
+
+    for (i in records) {
+        if (i < length(records)) {
+            printf "%s  \t\t   ",records[i];
+        } else {
+            printf "%s \n",records[i];
+        }
+    }
 }
 
 END {
-    printf "\n\n\t\t   Commencing clean up\n\n\n";
+    printf "\n\r\n\nNumber of records: %d\n\n", numberRecords;
+
+    printf "Closed file %s\n\n",fileName;
+
+    print "Program ended on " strftime("%m/%d/%Y", systime()) " at " strftime("%H:%M:%S", systime());
+
     exit 0;
 }
