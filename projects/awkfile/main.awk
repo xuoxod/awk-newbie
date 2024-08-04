@@ -23,10 +23,10 @@ NR==1 {
 
 {
     print "\n"plusBreak "\nNumber of Fields:  ", NF;
-    for (i = 1; i <= NF; i++) {
-        # printf("$%d = <%s>\n", i, $i);
-        printf("%d: %s\n",i, $i);
-    }
+    # for (i = 1; i <= NF; i++) {
+    #     # printf("$%d = <%s>\n", i, $i);
+    #     printf("%d: %s\n",i, $i);
+    # }
 }
 
 NR!=1 {
