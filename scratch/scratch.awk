@@ -53,7 +53,7 @@ END {
         }
     }
 
-    printf "\n%s",dashBreak3;
+    printf "\n%s",dashBreak2;
 
     for (i in records) {
         record = records[i];
