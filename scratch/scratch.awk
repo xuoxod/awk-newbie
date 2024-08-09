@@ -53,7 +53,7 @@ END {
         }
     }
 
-    printf "\n%s",dashBreak2;
+    printf "\n%s",dashBreak;
 
     for (i in records) {
         record = records[i];
@@ -70,7 +70,7 @@ END {
     }
 
 
-    printf "\n%s",plusBreak;
+    printf "\n\n\n%s",plusBreak;
 
     printf "Number of records: %d\n\n", length(records);
 
