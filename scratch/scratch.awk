@@ -74,17 +74,8 @@ END {
         record = records[i];
         split(record,commaSplit,"(,)");
 
-        # Find the longest column 
-        firstItem = commaSplit[0];
-        
         for (j in commaSplit) {
             item = commaSplit[j];
-
-            if (length(firstItem) > length(item)) {
-                otherRowsColumnGap["tab"] = length(firstItem);
-            } else {
-                otherRowsColumnGap["tab"] = length(item);
-            }
 
             if (j < length(commaSplit)) {
                 printf "%-36s", item;
@@ -99,8 +90,6 @@ END {
     printf "\n\n\n%s",plusBreak4;
 
     printf "Number of records: %d\n\n", length(records);
-
-    printf "Longest column: %d\n\n", otherRowsColumnGap["tab"];
 
     printf "Closed file %s\n\n",fileName;
 
