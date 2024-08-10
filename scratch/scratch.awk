@@ -10,7 +10,7 @@ BEGIN {
     # Vars
     program = ARGV[0];
     fileName = ARGV[1];
-    records["start"];
+    records["121"] = "default";
     strRecord;
     firstRow[121] = "default";
     otherRows[121] = "default";
