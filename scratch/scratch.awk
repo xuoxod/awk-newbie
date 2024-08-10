@@ -75,7 +75,7 @@ END {
         split(record,commaSplit,"(,)");
 
         # Find the longest column 
-        firstItem = commaSplit[1];
+        firstItem = commaSplit[0];
         
         for (j in commaSplit) {
             item = commaSplit[j];
