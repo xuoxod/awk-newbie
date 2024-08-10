@@ -4,7 +4,7 @@ BEGIN {
     # FIELDWIDTHS = "20 40 15 85";
     FPAT = "([^,]+)|(\"[^\"]+\")";
     OFS="  \t";
-    RS="\n";
+    RS="\n"; # Record separator 
     ORS="\n\n";
 
     # Vars
@@ -49,7 +49,14 @@ NR>1{
 END {
      if (length(firstRow) > 1) {
         for (i in firstRow) {
-            printf "%-36s", toupper(firstRow[i]); 
+            
+            if (firstRow[i] == "name") {
+                printf "%36s", toupper(firstRow[i]); 
+
+            } else {
+
+                printf "%-36s", toupper(firstRow[i]); 
+            }
         }
     }
 
@@ -59,16 +66,22 @@ END {
         record = records[i];
         split(record,commaSplit,"(,)");
 
-        firstItem = commaSplit[0];
+        firstItem = commaSplit[1];
         
         for (j in commaSplit) {
             item = commaSplit[j];
+
+            if (length(firstItem) > length(item)) {
+                otherRowsColumnGap["tab"] = length(firstItem);
+            } else {
+                otherRowsColumnGap["tab"] = length(item);
+            }
 
             if (j < length(commaSplit)) {
                 printf "%-36s", item;
             }
             else {
-                printf "%-36s\n", item;
+                printf "%36s\n", item;
             }
         }
     }
@@ -78,7 +91,7 @@ END {
 
     printf "Number of records: %d\n\n", length(records);
 
-    printf "Longest string value: %d\n\n", otherRowsColumnGap["tab"];
+    printf "Longest column: %d\n\n", otherRowsColumnGap["tab"];
 
     printf "Closed file %s\n\n",fileName;
 
