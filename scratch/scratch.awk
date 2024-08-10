@@ -45,7 +45,7 @@ NR==1 {
 }
 
 NR>1{
-    ++numberRecords;    
+    numberRecords += FNR;    
     record = $0;
     records[numberRecords] = record;
 }
@@ -74,6 +74,7 @@ END {
         record = records[i];
         split(record,commaSplit,"(,)");
 
+        # Find the longest column 
         firstItem = commaSplit[1];
         
         for (j in commaSplit) {
