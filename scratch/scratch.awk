@@ -50,11 +50,9 @@ END {
      if (length(firstRow) > 1) {
         for (i in firstRow) {
             
-            if (firstRow[i] == "name") {
+            if (i == length(firstRow)) {
                 printf "%36s", toupper(firstRow[i]); 
-
             } else {
-
                 printf "%-36s", toupper(firstRow[i]); 
             }
         }
