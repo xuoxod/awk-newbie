@@ -12,10 +12,10 @@ BEGIN {
     fileName = ARGV[1];
     records["start"];
     strRecord;
-    firstRow[121];
-    otherRows[121];
-    firstRowColumnGap[121];
-    otherRowsColumnGap[121];
+    firstRow[121] = "default";
+    otherRows[121] = "default";
+    firstRowColumnGap[121] = "default";
+    otherRowsColumnGap[121] = "default";
     numberRecords = 0;
 
     # Console Decoration 
