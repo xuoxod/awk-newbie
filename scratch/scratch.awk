@@ -58,13 +58,17 @@ END {
     for (i in records) {
         record = records[i];
         split(record,commaSplit,"(,)");
+
+        firstItem = commaSplit[0];
         
         for (j in commaSplit) {
+            item = commaSplit[j];
+
             if (j < length(commaSplit)) {
-                printf "%-36s", commaSplit[j];
+                printf "%-36s", item;
             }
             else {
-                printf "%-36s\n", commaSplit[j];
+                printf "%-36s\n", item;
             }
         }
     }
