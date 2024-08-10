@@ -49,7 +49,7 @@ NR>1{
 END {
      if (length(firstRow) > 1) {
         for (i in firstRow) {
-            printf "%10s %25s", toupper(firstRow[i]), " "; 
+            printf "%-36s", toupper(firstRow[i]); 
         }
     }
 
@@ -61,10 +61,10 @@ END {
         
         for (j in commaSplit) {
             if (j < length(commaSplit)) {
-                printf "%s %20s", commaSplit[j], " ";
+                printf "%-36s", commaSplit[j];
             }
             else {
-                printf "%s %20s\n", commaSplit[j], " ";
+                printf "%-36s\n", commaSplit[j];
             }
         }
     }
