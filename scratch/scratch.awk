@@ -5,7 +5,7 @@ BEGIN {
     FPAT = "([^,]+)|(\"[^\"]+\")";
     OFS="  \t";
     RS="\n"; # Record separator 
-    ORS="\n\n";
+    ORS="\n\n"; # Output record separator
 
     # Vars
     program = ARGV[0];
@@ -32,6 +32,11 @@ BEGIN {
     print "Program: " program;
     print "Opened file: " fileName;
     print "Argument Count: " ARGC;
+    
+    for (i in ARGV) {
+        printf "Argument %d: %3s\n", i+1, ARGV[i];
+    }
+
     printf "%s",plusBreak4;
 }
 
