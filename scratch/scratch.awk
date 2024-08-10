@@ -47,6 +47,9 @@ NR>1{
 
 
 END {
+
+    # Output the column titles 
+
      if (length(firstRow) > 1) {
         for (i in firstRow) {
             
@@ -58,8 +61,10 @@ END {
         }
     }
 
+    # Added line break 
     printf "\n%s",dashBreak;
 
+    # Output the records 
     for (i in records) {
         record = records[i];
         split(record,commaSplit,"(,)");
