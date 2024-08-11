@@ -45,7 +45,7 @@ BEGIN {
         }
     }
 
-    printf "%s\n\n\n\n",plusBreak;
+    printf "\n%s\n\n\n\n",plusBreak;
 }
 
 NR==1 {
@@ -79,7 +79,7 @@ END {
     }
 
     # Added line break 
-    printf "%s",sectionDashBreak3;
+    printf "\n%s",dashBreak;
 
     # Output the records 
     for (i in records) {
