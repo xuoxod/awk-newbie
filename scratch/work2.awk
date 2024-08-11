@@ -104,11 +104,11 @@ END {
     printf "\n\n\n\n%s",plusBreak;
     
     if (NF == 3) {
-        printf "Header has %d fields\n", NF;
+        printf "Number of fields: %d\n\n", NF;
     } else if (NF == 4) {
-        printf "Header has %d fields\n", NF;
+        printf "Number of fields: %d\n\n", NF;
     } else {
-        printf "Header has %d fields\n", NF;
+        printf "Number of fields: %d\n\n", NF;
     }
 
     printf "Number of records: %d\n\n", length(records);
