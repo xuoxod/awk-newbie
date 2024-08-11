@@ -69,35 +69,69 @@ END {
 
     # Output the column titles 
 
-     if (length(firstRow) > 1) {
-        for (i in firstRow) {
-            
-            if (i == length(firstRow)) {
-                printf "%36s", toupper(firstRow[i]); 
-            } else {
-                printf "%-36s", toupper(firstRow[i]); 
+    if (numberFields == 3) {
+        if (length(firstRow) > 1) {
+            for (i in firstRow) {
+                
+                if (i == length(firstRow)) {
+                    printf "%36s", toupper(firstRow[i]); 
+                } else {
+                    printf "%-36s", toupper(firstRow[i]); 
+                }
             }
         }
+    } else if (numberFields > 3) {
+        name = firstRow[1];
+        url = firstRow[2];
+        username = firstRow[3];
+        password = firstRow[4];
+
+        printf "%-30s %-30s %-30s %-30s", toupper(username), toupper(password), toupper(name), toupper(url);       
     }
 
     # Added line break 
     printf "\n%s",dashBreak;
 
     # Output the records 
-    for (i in records) {
-        record = records[i];
-        split(record, commaSplit, "(,)");
+    if (numberFields == 3) {
+        for (i in records) {
+            record = records[i];
+            split(record, commaSplit, "(,)");
 
-        for (j in commaSplit) {
-            item = commaSplit[j];
+            for (j in commaSplit) {
+                item = commaSplit[j];
 
-            if (j < length(commaSplit)) {
-                printf "%-36s", item;
-            }
-            else {
-                printf "%36s\n", item;
+                if (j < length(commaSplit)) {
+                    printf "%-36s", item;
+                }
+                else {
+                    printf "%36s\n", item;
+                }
             }
         }
+    } else if (numberFields > 3) {
+        for (i in records) {
+            record = records[i];
+            split(record, commaSplit, "(,)");
+
+            name = commaSplit[1];
+            url = commaSplit[2];
+            mUrl = substr(url,1,28);
+            username = commaSplit[3];
+            password = commaSplit[4];
+
+            # printf "%5s %-5s %-5s %5s\n", username, password, name, url;
+
+            printf "%-30s %-30s %-30s %-30s\n", username, password, name, mUrl;
+            
+            # if (j < length(commaSplit)) {
+            #     printf "%25s %-25s %-25s", username, password, name;
+            # }
+            # else {
+            #     printf "%25s %-25s %-25s\n", username, password, name;
+            # }
+            
+        }        
     }
 
 
