@@ -89,7 +89,14 @@ END {
         for (j in commaSplit) {
             item = commaSplit[j];
 
-            if (j < length(commaSplit)) {
+            # if (j < length(commaSplit)) {
+            #     printf "%-36s", item;
+            # }
+            # else {
+            #     printf "%36s\n", item;
+            # }
+
+            if (j %2 == 0) {
                 printf "%-36s", item;
             }
             else {
