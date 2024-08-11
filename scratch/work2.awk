@@ -50,16 +50,7 @@ BEGIN {
 }
 
 NR==1 {
-    numberFields = NF;
-    
-    if (NF == 3) {
-        printf "Header has %d fields\n", NF;
-    } else if (NF == 4) {
-        printf "Header has %d fields\n", NF;
-    } else {
-        printf "Header has %d fields\n", NF;
-    }
-        
+    numberFields = NF;        
     split($0,firstRow,"(,){1}");   
 }
 
@@ -111,6 +102,14 @@ END {
 
 
     printf "\n\n\n\n%s",plusBreak;
+    
+    if (NF == 3) {
+        printf "Header has %d fields\n", NF;
+    } else if (NF == 4) {
+        printf "Header has %d fields\n", NF;
+    } else {
+        printf "Header has %d fields\n", NF;
+    }
 
     printf "Number of records: %d\n\n", length(records);
 
