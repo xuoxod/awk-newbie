@@ -35,13 +35,13 @@ BEGIN {
     print "Program started on " strftime("%m/%d/%Y", systime()) " at " strftime("%H:%M:%S", systime());
     print "Program: " program;
     print "Opened file: " fileName;
-    print "Argument Count: " ARGC;
+    printf "Argument Count: %s\n", ARGC;
     
     for (i in ARGV) {
         if (i < length(ARGV) - 1) {
-            printf "Argument %d: %3s\n", i+1, ARGV[i];
+            printf "\tArgument %d: %3s\n", i+1, ARGV[i];
         } else {
-            printf "Argument %d: %3s", i+1, ARGV[i];
+            printf "\tArgument %d: %3s", i+1, ARGV[i];
         }
     }
 
