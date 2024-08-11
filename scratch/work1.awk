@@ -34,10 +34,14 @@ BEGIN {
     print "Argument Count: " ARGC;
     
     for (i in ARGV) {
-        printf "Argument %d: %3s\n", i+1, ARGV[i];
+        if (i < length(ARGV) - 1) {
+            printf "Argument %d: %3s\n", i+1, ARGV[i];
+        } else {
+            printf "Argument %d: %3s", i+1, ARGV[i];
+        }
     }
 
-    printf "%s",plusBreak4;
+    printf "%s\n\n\n\n",plusBreak;
 }
 
 NR==1 {
@@ -91,7 +95,7 @@ END {
     }
 
 
-    printf "\n\n\n%s",plusBreak4;
+    printf "\n\n\n\n%s",plusBreak;
 
     printf "Number of records: %d\n\n", length(records);
 
