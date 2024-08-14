@@ -71,14 +71,29 @@ END {
 
     # Output the column titles 
 
-    if (numberFields == 3) {
+    if (numberFields == 2) {
         if (length(firstRow) > 1) {
             for (i in firstRow) {
                 
                 if (i == length(firstRow)) {
-                    printf "%36s", toupper(firstRow[i]); 
+                    printf "%52s", toupper(firstRow[i]); 
                 } else {
-                    printf "%-36s", toupper(firstRow[i]); 
+                    printf "%-52s", toupper(firstRow[i]); 
+                }
+            }
+        }
+
+        # Added line break 
+        printf "\n%s",dashBreak;     
+
+    } else if (numberFields == 3) {
+        if (length(firstRow) > 1) {
+            for (i in firstRow) {
+                
+                if (i == length(firstRow)) {
+                    printf "%42s", toupper(firstRow[i]); 
+                } else {
+                    printf "%-42s", toupper(firstRow[i]); 
                 }
             }
         }
@@ -87,20 +102,22 @@ END {
         printf "\n%s",dashBreak;     
 
     } else if (numberFields > 3) {
-        name = firstRow[1];
-        url = firstRow[2];
-        username = firstRow[3];
-        password = firstRow[4];
-
-        printf "%-30s %-30s %-30s %-30s", toupper(username), toupper(password), toupper(name), toupper(url);
+        printf "%-30s %-30s %-30s %30s", toupper(firstRow[3]), toupper(firstRow[4]), toupper(firstRow[1]), toupper(firstRow[2]);
 
         # Added line break 
         printf "\n%s",dashBreakM;       
+    } else if (numberFields == 1) {
+        for (i in firstRow) {            
+            printf "%-52s", toupper(firstRow[i]);             
+        }
+
+        # Added line break 
+        printf "\n%s",dashBreak;    
     }
 
 
     # Output the records 
-    if (numberFields == 3) {
+    if (numberFields == 2) {
         for (i in records) {
             record = records[i];
             split(record, commaSplit, "(,)");
@@ -109,10 +126,29 @@ END {
                 item = commaSplit[j];
 
                 if (j < length(commaSplit)) {
-                    printf "%-36s", item;
+                    printf "%-52s", item;
                 }
                 else {
-                    printf "%36s\n", item;
+                    printf "%52s\n", item;
+                }
+            }
+        }
+
+        printf "\n\n\n\n%s",plusBreak;  
+
+    } else if (numberFields == 3) {
+        for (i in records) {
+            record = records[i];
+            split(record, commaSplit, "(,)");
+
+            for (j in commaSplit) {
+                item = commaSplit[j];
+
+                if (j < length(commaSplit)) {
+                    printf "%-42s", item;
+                }
+                else {
+                    printf "%42s\n", item;
                 }
             }
         }
@@ -132,7 +168,7 @@ END {
 
             # printf "%5s %-5s %-5s %5s\n", username, password, name, url;
 
-            printf "%-30s %-30s %-30s %-30s\n", username, password, name, mUrl;
+            printf "%-30s %-30s %-30s %30s\n", username, password, name, mUrl;
             
             # if (j < length(commaSplit)) {
             #     printf "%25s %-25s %-25s", username, password, name;
@@ -144,6 +180,19 @@ END {
         }
 
         printf "\n\n\n\n%s",plusBreakM;        
+    } else if (numberFields == 1) {
+        for (i in records) {
+            record = records[i];
+            split(record, commaSplit, "(,)");
+
+            for (j in commaSplit) {
+                item = commaSplit[j];
+
+                printf "%-52s\n", item;
+            }
+        }
+
+        printf "\n\n\n\n%s",plusBreak;  
     }
 
     
