@@ -32,7 +32,7 @@ ARG=""
 MSG=""
 SCRIPT=""
 ARG_COUNT=0
-OPTION_SPEC="r:-"
+OPTION_SPEC="hr:-"
 TARGET_HOST=""
 TARGET_PORT=""
 USER_NAME=
@@ -138,7 +138,7 @@ start() {
 
 trap "gracefulExit" INT TERM QUIT PWR STOP KILL
 
-start
+# start
 
 while getopts "$OPTION_SPEC" OPTION; do
     case "${OPTION}" in
@@ -162,7 +162,7 @@ while getopts "$OPTION_SPEC" OPTION; do
 
                     if [[ "$fileext" == "csv" ]]; then
                         clear
-                        awk -F, -f ./read.awk "$ARG2"
+                        awk -F, -f ./reader.awk "$ARG2"
                     else
                         clear
                         printf "%s is not a CSV file\n" "$ARG2"
@@ -171,15 +171,19 @@ while getopts "$OPTION_SPEC" OPTION; do
                     printf "%12s\n\n" "$ARG2 is not readable"
                 fi
             else
-                printf "%12s\n\n", "$ARG2 is not a file"
+                printf "%12s\n\n" "$ARG2 is not a file"
             fi
         else
-            printf "%12s\n\n", "$ARG2 does not exist"
+            printf "%12s\n\n" "$ARG2 does not exist"
         fi
         ;;
 
+    h)
+        printf "%22s\n\n" "$MSG"
+        ;;
+
     *)
-        if [ "$OPTERR" != 1 ] || [ "${optspec:0:1}" = ":" ]; then
+        if [ "$OPTERR" != 1 ]; then
             printf "Illegal flag: '-${OPTARG}'\n\n" >&2
         fi
         ;;
