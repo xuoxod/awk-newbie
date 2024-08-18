@@ -66,7 +66,7 @@ c;awk -F , -v USER_DEFINED_LIMIT=3 -f main.awk "$logins"
 
 ---
 
----
+## awk -F "," 'NR!=1{printf "%34s %34s\n",$3,$1}' $filepath
 
 ---
 
